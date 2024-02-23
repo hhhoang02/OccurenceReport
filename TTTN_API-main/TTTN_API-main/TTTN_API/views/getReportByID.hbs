@@ -1,0 +1,153 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a
+      class="sidebar-brand d-flex align-items-center justify-content-center nav-link"
+      href="/"
+    >
+      <div class="sidebar-brand-icon ">
+        <img class="rounded-circle" src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg" width="35" height="35" />
+      </div>
+      <div class="sidebar-brand-text mx-3 fw-bold text-black nav-link">Admin</div>
+    </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="sidebar-item">
+              <a class="nav-link " href="/" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Người dùng</span>
+              </a>
+            </li>
+           
+            <li class="sidebar-item">
+              <a class="nav-link bg-primary
+                    text-white rounded" href="/getAllReport" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Báo cáo sự cố</span>
+              </a>
+            </li>
+            
+          </ul>
+          
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+         
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <span class="ml-2 d-none d-lg-inline text-black small fst-italic">Nhân viên hành chính - Admin</span>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class=" text-center mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Chi tiết sự cố</h1>
+        </div>
+
+        <div class="row">
+            <!-- Datatables -->
+            <div class="row">
+          
+          <div class=" d-flex justify-content-center">
+            <div class="card wCard ">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4"></h5>
+                <div class="table-responsive">
+                  <div class="d-flex flex-row justify-content-between">
+                    <p> <strong>Người báo cáo: </strong>  {{getReportByID.annunciator.userName}}</p> 
+                    <p> <strong >SĐT: </strong> {{getReportByID.annunciator.sdt}} </p> 
+                  </div>
+
+                   <div class="d-flex flex-row justify-content-between">
+                    <p> <strong>Người tiếp nhận: </strong>  {{getReportByID.reportRecipient.userName}}</p> 
+                    {{#if getReportByID.reportRecipient.sdt}}
+                    <p> <strong >SĐT: </strong> {{getReportByID.reportRecipient.sdt}} </p> 
+                    {{else}}
+                    <p></p>
+                    {{/if}}
+                  </div>
+                  <p><strong>Phòng:</strong> {{getReportByID.room}} </p> 
+                  <p><strong>Loại sự cố:</strong> {{getReportByID.reportType}} </p> 
+                  <p><strong>Mô tả:</strong> <p class="rounded wh">{{getReportByID.description}}</p> </p> 
+                  
+                 
+                  <p><strong>Trạng thái:</strong> 
+                  {{#if getReportByID.status3.status}}
+                          Hoàn thành   --- Thời gian: {{getReportByID.status3.time}} -- Ngày: {{getReportByID.status3.date}}
+                          {{else if getReportByID.status2.status}}
+                          Đã tiếp nhận   ---  Thời gian: {{getReportByID.status2.time}} -- Ngày: {{getReportByID.status2.date}}
+                          {{else if getReportByID.status1.status}}
+                          Chưa tiếp nhận  --- Thời gian: {{getReportByID.status1.time}} -- Ngày: {{getReportByID.status1.date}}
+                          {{/if}} </p> 
+                  <p><strong>Đánh giá:</strong> <p class="rounded wh">{{getReportByID.evaluate}}</p> </p> 
+                  <br/>
+                  <p><strong>Hình ảnh:</strong></p> 
+                  
+                  <div class="wrapper">
+                    {{#each getReportByID.image}}
+                    <img class="marginTop image" src={{this}} width="200" height="200"/>
+                    {{/each}}
+                    
+                  </div>
+                  
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    
+  </div>
+  
+  

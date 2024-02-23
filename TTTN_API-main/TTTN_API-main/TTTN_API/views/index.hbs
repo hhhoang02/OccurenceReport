@@ -1,0 +1,213 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a
+      class="sidebar-brand d-flex align-items-center justify-content-center nav-link"
+      href="/"
+    >
+      <div class="sidebar-brand-icon ">
+        <img class="rounded-circle" src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg" width="35" height="35" />
+      </div>
+      <div class="sidebar-brand-text mx-3 fw-bold text-black nav-link">Admin</div>
+    </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            <li class="sidebar-item">
+              <a class="nav-link bg-primary
+                text-white rounded" href="/" aria-expanded="false">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                <span class="hide-menu">Người dùng</span>
+              </a>
+            </li>
+           
+            <li class="sidebar-item">
+              <a class="nav-link" href="/getAllReport" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Báo cáo sự cố</span>
+              </a>
+            </li>
+            
+          </ul>
+          
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+         
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <span class="ml-2 d-none d-lg-inline text-black small fst-italic">Nhân viên hành chính - Admin</span>
+              <li class="nav-item dropdown">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg" alt="" width="35" height="35" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-user fs-6"></i>
+                      <p class="mb-0 fs-3">My Profile</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-mail fs-6"></i>
+                      <p class="mb-0 fs-3">My Account</p>
+                    </a>
+                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                      <i class="ti ti-list-check fs-6"></i>
+                      <p class="mb-0 fs-3">My Task</p>
+                    </a>
+                    <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Danh sách người dùng</h1>
+        </div>
+
+        <div class="row">
+            <!-- Datatables -->
+            <div class="row">
+          
+          <div class=" d-flex align-items-stretch  justify-content-between">
+            <div class="card ">
+              <div class=" ">
+                
+                <div class="table-responsive">
+                  <table class="table mb-0 align-middle d">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Tên</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Email</h6>
+                        </th>
+                        
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Số điện thoại</h6>
+                        </th>
+                        <th class="border-bottom-0 k">
+                          <h6 class="fw-semibold mb-0">Quyền</h6>
+                        </th>
+                        
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Khóa</h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="">
+                      {{#each user}}
+                      <tr>
+                        <td class="border-bottom-0 "><p class="textsize">{{this.userName}}</p></td>
+                        <td class="border-bottom-0">
+                            <p class="textsize">{{this.email}}</p>
+                                                    
+                        </td>
+                        
+                        <td class="border-bottom-0">
+                          <p class="textsize">{{this.sdt}}</p>
+                          
+                        </td>
+                        <td class="border-bottom-0">
+                          {{#if this.type}}
+                          <p class="textsize">Quản lý
+                           <a href="/role/{{this._id}}" class="btn btn-success textsize">Nhân viên</a></p>
+                          {{else}}
+                           <p class="textsize">
+                           <a href="/role/{{this._id}}" class="btn btn-success textsize"> Quản lý</a> Nhân viên</p>
+                          {{/if}}
+                        </td>
+                         <td class="border-bottom-0">
+                         
+                          {{#if this.lock}}
+                          
+                          <button type="button" class="btn btn-warning"><a onclick="confirmDelete('{{this._id}}')" class="">Mở khóa</a></button>
+                          {{else}}
+                          <button type="button" class="btn btn-danger"><a onclick="confirmDelete('{{this._id}}')" class="">Khóa</a></button>
+                          
+                          {{/if}}
+                        </td> 
+                      </tr> 
+                         {{/each}}                   
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+<script>
+  const fetchAPI = async (url, option) => {
+        const res = await fetch(url, option);
+        return res.json();
+    }
+
+    const deleteProduct = async (id) => {
+        const url = `/lock/${id}`;
+        const option = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        }
+        try {
+            const res = await fetchAPI(url, option);
+            if (res.result) { 
+              swal("Thất bại!", "Thao tác thất bại!", "error");
+                
+            } else {
+              
+                swal("Thành công!", "Thao tác thành công!", "success");
+              setTimeout(() => { window.location.reload(); }, 1000);
+            }
+        } catch (err) {
+            console.log(err);
+            swal("Thất bại!", "Thao tác thất bại!", "error");
+        }
+    }
+
+    const confirmDelete = (id) => {
+        swal({
+            title: "Xác nhận?",
+            text: "Bạn có chắc chắn với thao tác này không?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    deleteProduct(id)
+                }
+            });
+    }
+</script>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "847356418009",
+    "project_id": "tttn-fa26e",
+    "storage_bucket": "tttn-fa26e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847356418009:android:afad1ceb0c53bc9fa4abc8",
+        "android_client_info": {
+          "package_name": "com.tttn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO2UxSr7Mg98amHMbNnBFM_41I9NsWpiA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

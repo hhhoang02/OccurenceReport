@@ -1,0 +1,200 @@
+<div id="wrapper">
+  <!-- Sidebar -->
+  <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+    <a
+      class="sidebar-brand d-flex align-items-center justify-content-center"
+      href="/"
+    >
+      <div class="sidebar-brand-icon ">
+        <img class="rounded-circle" src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg" />
+      </div>
+      <div class="sidebar-brand-text mx-3">Admin</div>
+    </a>
+    <hr class="sidebar-divider my-0" />
+
+    <li class="nav-item">
+      <a class="nav-link " href="/">Người dùng</a>
+      <a class="nav-link bg-gray-300 text-gray-900" href="/getAllReport">Báo cáo sự cố</a>
+      
+      
+    </li>
+
+  </ul>
+  <!-- Sidebar -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <!-- TopBar -->
+      <nav
+        class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top"
+      >
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown no-arrow">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                class="img-profile rounded-circle"
+                src="https://i.pinimg.com/564x/ce/c9/77/cec9777d4757a44c29e576fce7a006bb.jpg"
+                style="max-width: 60px"
+              />
+              <span class="ml-2 d-none d-lg-inline text-white small">Nhân viên hành chính - Admin</span>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="userDropdown"
+            >
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                href="javascript:void(0);"
+                data-toggle="modal"
+                data-target="#logoutModal"
+              >
+                
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Danh sách sự cố</h1>
+        </div>
+
+        <div class="row">
+            <!-- Datatables -->
+            <div class="row">
+          
+          <div class=" d-flex align-items-stretch  justify-content-between">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4"></h5>
+                <div class="table-responsive">
+                  <select name="userName" class=" form-select-sm mb-3 k">
+                        <option selected >Người báo cáo</option>
+                        {{#each user}}                       
+                          <a href="/getReportByUser/{{this._id}}" class="btn btn-primary "><option value="{{this._id}}">{{this.userName}}</a></option>
+                        {{/each}}
+
+                      </select>
+
+                      <select name="userName" class=" form-select-sm mb-3 k">
+                        <option selected >Người tiếp nhận</option>
+                        {{#each admin}}                       
+                          <option value="{{this._id}}">{{this.userName}}</option>
+                        {{/each}}
+
+                      </select>
+                  <table class="table text-wrap mb-0 align-middle d">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Người báo cáo</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Phòng</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Loại sự cố</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Trạng thái</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Người tiếp nhận</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Hàng động</h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      {{#each report}}
+                      <tr>
+                        <td class="border-bottom-0"><p class=" mb-0">{{this.annunciator.userName}}</p></td>
+                        <td class="border-bottom-0">
+                            <p class=" mb-1">{{this.room}}</p>
+                                                    
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class=" mb-1">{{this.reportType}}</p>
+                          
+                        </td>
+                        <td class="border-bottom-0">
+                          {{#if this.status3.status}}
+                          <p class=" mb-1 text-primary">Hoàn thành</p>
+                          {{else if this.status2.status}}
+                          <p class=" mb-1 text-danger-emphasis">Đã tiếp nhận</p>
+                          {{else if this.status1.status}}
+                          <p class=" mb-1">Chưa tiếp nhận</p>
+                          {{/if}}
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class=" mb-1 ">{{this.reportRecipient.userName}}</p>
+                        </td>
+                        <td>
+                          <a href="/getReport/{{this._id}}" class="btn btn-primary ">Xem chi tiết</a>
+                        </td> 
+                      </tr> 
+                         {{/each}}                   
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Logout -->
+        <div
+          class="modal fade"
+          id="logoutModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabelLogout"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelLogout">Ohh No!</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to logout?</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  data-dismiss="modal"
+                >Cancel</button>
+                <a href="login.html" class="btn btn-primary">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!---ontainer Fluid-->
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,66 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+.hhh {
+  padding: 50px;
+}
+
+.v {
+  margin-left: 10px;
+}
+
+.t {
+  margin: 5px;
+}
+
+.circleImage {
+  border-radius: 50%;
+}
+
+.g {
+  margin-right: 10px;
+}
+
+.marginTop {
+  margin-top: 5px;
+}
+
+.textsize {
+  font-size: 15px;
+}
+
+
+
+.d {
+  border: 1px solid rgb(26, 25, 25); /* kẻ viền quanh bảng */
+  table-layout: fixed;
+}
+
+.k {
+  width: 300px;
+  
+}
+
+.wh{
+  width: auto;
+  height: auto;
+  min-height: 50px;
+  border: 1px solid rgb(208, 204, 204); 
+  padding: 5px;
+}
+
+.widthForm {
+  width: 700px;
+}
+
+.wCard{
+  width: 60%;
+}
+
+
+
